@@ -2,6 +2,7 @@ import customReadable from '../customStreams/readable.js';
 import customWritable from '../customStreams/writable.js';
 import configParser from '../utils/configParser.js';
 import {pipeline} from 'stream';
+import BaseError from '../customError/baseError.js';
 
 
 export default function creatStreamPipe(object){
@@ -9,7 +10,6 @@ export default function creatStreamPipe(object){
   let input$;
   let output$;
   let transform$;
-  console.log(cliObject);
   configParser(cliObject.config);
   if (cliObject.input) {
     input$ = new customReadable(cliObject.input);
@@ -31,9 +31,7 @@ export default function creatStreamPipe(object){
     output$,
     (err) => {
       if (err) {
-        console.error('Pipeline failed.', err);
-      } else {
-        console.log('Pipeline succeeded.');
+        throw new BaseError('Pipeline failed');
       }
     }
   ) 

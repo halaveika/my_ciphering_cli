@@ -14,7 +14,6 @@ export default class CaesarCipherTransform extends Transform {
       if(this.type === '1'){
         result = encodeCaesarCipher(chunk.toString())
       } else {result = decodeCaesarCipher(chunk.toString())}
-      console.log(result);
       callback(null, result);
     } catch (err) {
       callback(err);
