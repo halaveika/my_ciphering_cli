@@ -14,6 +14,7 @@ export default class Rot8Transform extends Transform {
       if(this.type === '1'){
         result = encodeToRot8(chunk.toString())
       } else {result = decodeToRot8(chunk.toString())}
+      console.log(result);
       callback(null, result);
     } catch (err) {
       callback(err);

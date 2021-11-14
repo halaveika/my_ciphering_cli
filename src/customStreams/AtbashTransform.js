@@ -9,7 +9,6 @@ export default class AtbashTransform extends Transform {
 
   _transform(chunk, encoding, callback) {
     try {
-      console.log(chunk.toString());
       const result = codeAtbash(chunk.toString())
       console.log(result);
       callback(null, result);

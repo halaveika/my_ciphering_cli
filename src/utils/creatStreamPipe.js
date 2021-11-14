@@ -12,6 +12,7 @@ export default function creatStreamPipe(object){
   let input$;
   let output$;
   let transform$;
+  console.log(cliObject);
   configParser(cliObject.config);
   if (cliObject.input) {
     input$ = new customReadable(cliObject.input);
