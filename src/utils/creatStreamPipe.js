@@ -1,6 +1,3 @@
-import Rot8Transform from '../customStreams/rot8Transform.js';
-import CaesarCipherTransform from '../customStreams/caesarCipherTransform.js';
-import AtbashTransform from '../customStreams/AtbashTransform.js';
 import customReadable from '../customStreams/readable.js';
 import customWritable from '../customStreams/writable.js';
 import configParser from '../utils/configParser.js';
@@ -27,32 +24,19 @@ export default function creatStreamPipe(object){
   } else {
     output$ = process.stdout;
   }
-  if(transform$){
-    pipeline(
-      input$,
-      ...transform$,
-      output$,
-      (err) => {
-        if (err) {
-          console.error('Pipeline failed.', err);
-        } else {
-          console.log('Pipeline succeeded.');
-        }
+
+  pipeline(
+    input$,
+    ...transform$,
+    output$,
+    (err) => {
+      if (err) {
+        console.error('Pipeline failed.', err);
+      } else {
+        console.log('Pipeline succeeded.');
       }
-      )
-  } else {
-    pipeline(
-      input$,
-      output$,
-      (err) => {
-        if (err) {
-          console.error('Pipeline failed.', err);
-        } else {
-          console.log('Pipeline succeeded.');
-        }
-      }
-      )
-  }
+    }
+  ) 
 
 
 }
