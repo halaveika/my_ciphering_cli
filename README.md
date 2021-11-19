@@ -9,7 +9,7 @@ ROT-8 as variation of ROT-13
 
 Use command line interface:
 
-node my_ciphering_cli -i "file_input_path" -o "file_output_path" -c "config"
+node src/index.js -i "file_input_path" -o "file_output_path" -c "config"
 
 # -i, --input: a path to input file is optional
 
