@@ -1,4 +1,4 @@
-import codeAtbash from '../atbash.js';
+const {codeAtbash} = require('../atbash');
 
 describe("codeAtbash fucntion should cipher as Atbash method", () => {
 

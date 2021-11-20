@@ -1,8 +1,8 @@
-import * as fs from 'fs';
-import BaseError from '../customError/baseError.js';
+const fs = require('fs');
+const {BaseError} = require('../customError/baseError');
 
 class Validator{
-  configCheck = (config) =>{
+  static configCheck = (config) =>{
     if(!config) {
 
     }
@@ -58,22 +58,7 @@ class Validator{
     }
   }
 
-  fileCheck = (path,type) => {
-    fs.access(path, function (error) {
-      if (error) {
-     
-        if(type === '-i' || type === '--input' ) {
-          process.stderr.write(`Intput file ${path}  do not exist!\n`)
-          process.exit(1);
-        } else {
-          process.stderr.write(`Otput file ${path} do not exist!\n`);
-          process.exit(1);
-      }
-      }
-    });
-  }
-
-  doubleCheck = (line) => {
+  static doubleCheck = (line) => {
     if (line.filter(e => e ==='-i' || e === '--input' ).length > 1) {
       process.stderr.write(`argument -i is doubled!\n`);
       process.exit(1);
@@ -90,4 +75,6 @@ class Validator{
 
 }
 
-export default new Validator();
+  module.exports = {
+    Validator
+  }

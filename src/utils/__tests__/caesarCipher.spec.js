@@ -1,4 +1,4 @@
-import {decodeCaesarCipher, encodeCaesarCipher} from '../caesarCipher.js';
+const {decodeCaesarCipher, encodeCaesarCipher} = require('../caesarCipher');
 
 describe("decodeCaesarCipher fucntion should decode Caesar Cipher", () => {
 

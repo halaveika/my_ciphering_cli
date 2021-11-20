@@ -1,8 +1,6 @@
-import path from 'path';
+const path = require('path');
 
-const __dirname = path.resolve();
-
-export default {
+module.exports = {
     rootDir: path.join(__dirname, './'),
     verbose: true,
     testEnvironment: 'jest-environment-node',
@@ -12,16 +10,13 @@ export default {
     ],
     testPathIgnorePatterns: [
         '/node_modules/',
-        '.vscode'
+        '/.vscode/'
     ],
     collectCoverage: true,
     coverageThreshold: {
       global: {
-        branches: 100,
-        functions: 100,
-        lines: 100,
-        statements: 100
+        branches: 85,
+        lines: 70
       }
-    },
-    transform: {}
+    }
 };

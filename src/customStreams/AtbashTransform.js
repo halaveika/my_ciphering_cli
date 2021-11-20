@@ -1,7 +1,7 @@
-import { Transform } from 'stream';
-import codeAtbash from '../utils/atbash.js'
+const { Transform } = require('stream');
+const {codeAtbash} = require('../utils/atbash');
 
-export default class AtbashTransform extends Transform {
+class AtbashTransform extends Transform {
   constructor() {
     super();
   }
@@ -14,4 +14,8 @@ export default class AtbashTransform extends Transform {
       callback(err);
     }
   }
+}
+
+module.exports = {
+  AtbashTransform
 }

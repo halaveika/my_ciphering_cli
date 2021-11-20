@@ -1,7 +1,8 @@
-import { Readable } from 'stream';
-import * as fs from 'fs'
+const { Readable } = require('stream');
+const fs = require('fs');
+const {InvalidFileError} = require('../customError/baseError');
 
-export default class customReadable extends Readable {
+class customReadable extends Readable {
   constructor(filename) {
     super();
     this.filename = filename;
@@ -9,15 +10,19 @@ export default class customReadable extends Readable {
   }
 
   _construct(callback) {
-    fs.open(this.filename, (err, fd) => {
-      if(err) {
-        callback(err);
-      } else {
-        this.fd = fd;
-        callback();
+    fs.open(this.filename,'r', (err, fd) => {
+      try {
+        if(err) {
+          throw new InvalidFileError('Invalid path to input file or no read access\n');
+        } else {
+          this.fd = fd;
+          callback();
+        } 
+      } catch(e) {
+        process.stderr.write(e.message);
+        process.exit(1);
       }
     });
-
   }
 
   _read(n) {
@@ -38,4 +43,8 @@ export default class customReadable extends Readable {
       callback(err)
     }
   }
+}
+
+module.exports = {
+  customReadable
 }

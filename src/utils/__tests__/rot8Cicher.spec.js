@@ -1,4 +1,4 @@
-import {encodeToRot8, decodeToRot8} from '../rot8Cicher.js';
+const {encodeToRot8, decodeToRot8} = require('../rot8Cicher');
 
 describe("rot8Cicher fucntion should decode rot8 Cipher", () => {
 

@@ -1,4 +1,4 @@
-import configParser from '../configParser.js';
+const {configParser} = require('../configParser');
 
 describe("configParser should mapping object depand of config parametr", () => {
 
@@ -19,7 +19,6 @@ describe("configParser should mapping object depand of config parametr", () => {
   test("configParser should map 3 instances", () => {
     const config = 'A-R1-C1';
     const result = configParser(config,mockStore);
-    console.dir(result);
     expect(result.length).toBe(3);
   });
 

@@ -1,26 +1,41 @@
-import { Writable } from 'stream';
-import * as fs from 'fs'
+const { Writable } = require('stream');
+const fs = require('fs');
+const {InvalidFileError} = require('../customError/baseError');
 
-export default class customWritable extends Writable {
+class customWritable extends Writable {
   constructor(filename) {
     super();
     this.filename = filename;
   }
 
   _construct(callback) {
-    fs.open(this.filename, 'a', (err, fd) => {
-      if(err) {
-        callback(err);
-      } else {
-        this.fd = fd;
-        callback();
+    try {
+      try {
+        fs.accessSync(this.filename);
+      } catch (e) {
+        throw new InvalidFileError('Invalid path to output file or no write access\n');
       }
-    });
-
+      fs.open(this.filename, 'a', (err, fd) => {
+          this.fd = fd;
+          callback();
+        });
+    } catch (error) {
+        process.stderr.write(error.message);
+        process.exit(1);
+      }
   }
 
   _write(chunk, encoding, callback) {
-    fs.write(this.fd, chunk, callback)
+    try {
+      try {
+        fs.write(this.fd, chunk, callback)
+      } catch (e) {
+        throw new InvalidFileError('Invalid path to output file or no write access\n');
+        };
+    } catch (error) {
+        process.stderr.write(error.message);
+        process.exit(1);
+      }
   }
 
   _destroy(err, callback) {
@@ -32,4 +47,8 @@ export default class customWritable extends Writable {
     }
   }
 
-  }
+}
+
+module.exports = {
+  customWritable
+}

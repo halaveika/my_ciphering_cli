@@ -1,6 +1,6 @@
-import Rot8Transform from '../customStreams/rot8Transform.js';
-import CaesarCipherTransform from '../customStreams/caesarCipherTransform.js';
-import AtbashTransform from '../customStreams/AtbashTransform.js';
+const {Rot8Transform} = require('../customStreams/rot8Transform');
+const {CaesarCipherTransform} = require('../customStreams/caesarCipherTransform');
+const {AtbashTransform} = require('../customStreams/AtbashTransform');
 
 const transformStreamsStore =new Map([
   ['A',{class:AtbashTransform}],
@@ -9,4 +9,6 @@ const transformStreamsStore =new Map([
   ['C1',{class:CaesarCipherTransform,type:'1'}],
   ['C0',{class:CaesarCipherTransform,type:'0'}]])
 
-export default transformStreamsStore;
+  module.exports = {
+    transformStreamsStore
+  }

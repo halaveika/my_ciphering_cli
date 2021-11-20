@@ -1,4 +1,4 @@
-export function encodeToRot8(str) {
+const encodeToRot8 = (str) => {
   const result = str.split('').map(letter => {
     if (letter.charCodeAt(0) >= 65 && letter.charCodeAt(0) <=90){
       const enqrypt = letter.charCodeAt(0) + 8;
@@ -11,7 +11,7 @@ export function encodeToRot8(str) {
   return String.fromCharCode(...result);
 }
 
-export function decodeToRot8(str) {
+const decodeToRot8 = (str) => {
   const result = str.split('').map(letter => {
     if (letter.charCodeAt(0) >= 65 && letter.charCodeAt(0) <=90){
       const enqrypt = letter.charCodeAt(0) - 8;
@@ -22,4 +22,9 @@ export function decodeToRot8(str) {
     return letter.charCodeAt(0);
   });
   return String.fromCharCode(...result);
+}
+
+module.exports = {
+  encodeToRot8,
+  decodeToRot8
 }

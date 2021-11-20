@@ -1,5 +1,4 @@
-import transformStreamsStore from '../transformStreamsStore.js';
-
+const {transformStreamsStore} = require('../transformStreamsStore');
 describe("transformStreamsStore should creat Map of streams", () => {
 
   test("transformStreamsStore has keys A,R0,R1,C0,C1", () => {
