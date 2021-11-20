@@ -7,7 +7,6 @@ export default class CaesarCipherTransform extends Transform {
     this.type = type;
   }
 
-
   _transform(chunk, encoding, callback) {
     try {
       let result;

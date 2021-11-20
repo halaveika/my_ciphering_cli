@@ -4,7 +4,8 @@
   "description": "RSschool NodeJS2021Q4",
   "main": "index.js",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config=./jest.config.js --coverage -u"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config=./jest.config.js --coverage -u",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config=./jest.config.js --coverage --collectCoverageFrom='src/**/*.js'"
   },
   "repository": {
     "type": "git",

@@ -3,6 +3,7 @@ import customWritable from '../customStreams/writable.js';
 import configParser from '../utils/configParser.js';
 import {pipeline} from 'stream';
 import BaseError from '../customError/baseError.js';
+import transformStreamsStore from './transformStreamsStore.js';
 
 
 export default function creatStreamPipe(object){
@@ -10,14 +11,13 @@ export default function creatStreamPipe(object){
   let input$;
   let output$;
   let transform$;
-  configParser(cliObject.config);
   if (cliObject.input) {
     input$ = new customReadable(cliObject.input);
   } else {
     input$ = process.stdin;
   }
   if (cliObject.config) {
-    transform$ = configParser(cliObject.config);
+    transform$ = configParser(cliObject.config,transformStreamsStore);
   }
   if (cliObject.output) {
     output$ = new customWritable(cliObject.output);
