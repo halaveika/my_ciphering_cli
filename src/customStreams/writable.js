@@ -2,7 +2,7 @@ const { Writable } = require('stream');
 const fs = require('fs');
 const {InvalidFileError} = require('../customError/baseError');
 
-class customWritable extends Writable {
+class CustomWritable extends Writable {
   constructor(filename) {
     super();
     this.filename = filename;
@@ -50,5 +50,5 @@ class customWritable extends Writable {
 }
 
 module.exports = {
-  customWritable
+  CustomWritable
 }

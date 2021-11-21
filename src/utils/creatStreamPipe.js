@@ -1,6 +1,6 @@
 const {pipeline} = require('stream');
-const {customReadable} = require('../customStreams/readable');
-const {customWritable} = require('../customStreams/writable');
+const {CustomReadable} = require('../customStreams/readable');
+const {CustomWritable} = require('../customStreams/writable');
 const {configParser} = require('../utils/configParser');
 const {BaseError} = require('../customError/baseError');
 const {transformStreamsStore} = require('./transformStreamsStore');
@@ -11,19 +11,16 @@ const creatStreamPipe = (object) => {
   let output$;
   let transform$;
   if (cliObject.input) {
-    input$ = new customReadable(cliObject.input);
+    input$ = new CustomReadable(cliObject.input);
   } else {
     input$ = process.stdin;
   }
-  if (cliObject.config) {
-    transform$ = configParser(cliObject.config,transformStreamsStore);
-  }
   if (cliObject.output) {
-    output$ = new customWritable(cliObject.output);
+    output$ = new CustomWritable(cliObject.output);
   } else {
     output$ = process.stdout;
   }
-
+  transform$ = configParser(cliObject.config,transformStreamsStore);
   pipeline(
     input$,
     ...transform$,

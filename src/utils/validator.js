@@ -3,9 +3,6 @@ const {BaseError} = require('../customError/baseError');
 
 class Validator{
   static configCheck = (config) =>{
-    if(!config) {
-
-    }
     const resultArr = config.split('-');
 
     const isFormated = resultArr.every((item => item.length < 3))

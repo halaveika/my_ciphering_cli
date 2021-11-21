@@ -2,7 +2,7 @@ const { Readable } = require('stream');
 const fs = require('fs');
 const {InvalidFileError} = require('../customError/baseError');
 
-class customReadable extends Readable {
+class CustomReadable extends Readable {
   constructor(filename) {
     super();
     this.filename = filename;
@@ -46,5 +46,5 @@ class customReadable extends Readable {
 }
 
 module.exports = {
-  customReadable
+  CustomReadable
 }
