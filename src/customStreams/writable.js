@@ -39,7 +39,7 @@ class CustomWritable extends Writable {
   }
 
   _destroy(err, callback) {
-    fs.write(this.fd, '\r\n', callback);
+    fs.write(this.fd, '', callback);
     if(this.fd) {
       fs.close(this.fd, error => callback( error || err))
     } else {
