@@ -1,4 +1,4 @@
-export default function codeAtbash(str) {
+const codeAtbash = (str) => {
   const result = str.split('').map(letter => {
     if (letter.charCodeAt(0) >= 65 && letter.charCodeAt(0) <= 90){
       return 155 - letter.charCodeAt(0);
@@ -9,4 +9,9 @@ export default function codeAtbash(str) {
     return letter.charCodeAt(0);
   });
   return String.fromCharCode(...result);
+}
+
+
+module.exports = {
+  codeAtbash
 }

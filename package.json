@@ -2,9 +2,10 @@
   "name": "my_ciphering_cli",
   "version": "1.0.0",
   "description": "RSschool NodeJS2021Q4",
-  "main": "my_ciphering_cli.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:config": "jest --config=./jest.config.js --coverage --collectCoverageFrom='src/**/*.js'",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,7 @@
     "url": "https://github.com/halaveika/my_ciphering_cli/issues"
   },
   "homepage": "https://github.com/halaveika/my_ciphering_cli#readme",
-  "type": "module"
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
 }

@@ -1,6 +1,6 @@
-import Validator from "./validator.js";
+const {Validator} = require('./validator');
 
-export default function commandLineParser(array){
+const commandLineParser = (array) => {
   const result = {};
   const line = array.slice(2);
   Validator.doubleCheck(line);
@@ -10,11 +10,9 @@ export default function commandLineParser(array){
       result.config = line[i+1];
     }
     if(line[i] === '-i' || line[i] === '--input') {
-      Validator.fileCheck(line[i+1], line[i]);
       result.input = line[i+1];
     }
     if(line[i] === '-o' || line[i] === '--output') {
-      Validator.fileCheck(line[i+1], line[i]);
       result.output = line[i+1];
     }
   }
@@ -23,4 +21,8 @@ export default function commandLineParser(array){
     process.exit(1);
   }
   return result
+}
+
+module.exports = {
+  commandLineParser
 }

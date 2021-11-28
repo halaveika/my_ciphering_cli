@@ -1,30 +1,26 @@
-import customReadable from '../customStreams/readable.js';
-import customWritable from '../customStreams/writable.js';
-import configParser from '../utils/configParser.js';
-import {pipeline} from 'stream';
-import BaseError from '../customError/baseError.js';
+const {pipeline} = require('stream');
+const {CustomReadable} = require('../customStreams/readable');
+const {CustomWritable} = require('../customStreams/writable');
+const {configParser} = require('../utils/configParser');
+const {BaseError} = require('../customError/baseError');
+const {transformStreamsStore} = require('./transformStreamsStore');
 
-
-export default function creatStreamPipe(object){
+const creatStreamPipe = (object) => {
   const cliObject = Object.assign({},object);
   let input$;
   let output$;
   let transform$;
-  configParser(cliObject.config);
   if (cliObject.input) {
-    input$ = new customReadable(cliObject.input);
+    input$ = new CustomReadable(cliObject.input);
   } else {
     input$ = process.stdin;
   }
-  if (cliObject.config) {
-    transform$ = configParser(cliObject.config);
-  }
   if (cliObject.output) {
-    output$ = new customWritable(cliObject.output);
+    output$ = new CustomWritable(cliObject.output);
   } else {
     output$ = process.stdout;
   }
-
+  transform$ = configParser(cliObject.config,transformStreamsStore);
   pipeline(
     input$,
     ...transform$,
@@ -35,7 +31,8 @@ export default function creatStreamPipe(object){
       }
     }
   ) 
-
-
 }
 
+module.exports = {
+  creatStreamPipe
+}

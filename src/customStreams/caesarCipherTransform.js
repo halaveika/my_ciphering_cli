@@ -1,12 +1,11 @@
-import { Transform } from 'stream';
-import {encodeCaesarCipher, decodeCaesarCipher} from '../utils/caesarCipher.js'
+const { Transform } = require('stream');
+const {encodeCaesarCipher, decodeCaesarCipher} = require('../utils/caesarCipher');
 
-export default class CaesarCipherTransform extends Transform {
+class CaesarCipherTransform extends Transform {
   constructor(type) {
     super();
     this.type = type;
   }
-
 
   _transform(chunk, encoding, callback) {
     try {
@@ -19,4 +18,8 @@ export default class CaesarCipherTransform extends Transform {
       callback(err);
     }
   }
+}
+
+module.exports = {
+  CaesarCipherTransform
 }

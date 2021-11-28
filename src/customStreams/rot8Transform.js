@@ -1,7 +1,7 @@
-import { Transform } from 'stream';
-import {encodeToRot8, decodeToRot8} from '../utils/rot8Cicher.js'
+const { Transform } = require('stream');
+const {encodeToRot8, decodeToRot8} = require('../utils/rot8Cicher');
 
-export default class Rot8Transform extends Transform {
+class Rot8Transform extends Transform {
   constructor(type) {
     super();
     this.type = type;
@@ -19,4 +19,8 @@ export default class Rot8Transform extends Transform {
       callback(err);
     }
   }
+}
+
+module.exports = {
+  Rot8Transform
 }

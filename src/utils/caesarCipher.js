@@ -1,4 +1,4 @@
-export function decodeCaesarCipher(str) {
+const decodeCaesarCipher = (str) => {
   const result = str.split('').map(letter => {
     if (letter.charCodeAt(0) >= 65 && letter.charCodeAt(0) <=90){
       const enqrypt = letter.charCodeAt(0) + 25;
@@ -11,7 +11,7 @@ export function decodeCaesarCipher(str) {
   return String.fromCharCode(...result);
 }
 
-export function encodeCaesarCipher(str) {
+const encodeCaesarCipher = (str) => {
   const result = str.split('').map(letter => {
     if (letter.charCodeAt(0) >= 65 && letter.charCodeAt(0) <=90){
       const enqrypt = letter.charCodeAt(0) - 25;
@@ -22,4 +22,8 @@ export function encodeCaesarCipher(str) {
     return letter.charCodeAt(0);
   });
   return String.fromCharCode(...result);
+}
+
+module.exports = {
+  decodeCaesarCipher, encodeCaesarCipher
 }
