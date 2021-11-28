@@ -1,0 +1,27 @@
+{
+  "name": "my_ciphering_cli",
+  "version": "1.0.0",
+  "description": "RSschool NodeJS2021Q4",
+  "main": "index.js",
+  "scripts": {
+    "test:config": "jest --config=./jest.config.js --coverage --collectCoverageFrom='src/**/*.js'",
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halaveika/my_ciphering_cli.git"
+  },
+  "keywords": [
+    "cli",
+    "NodeJS"
+  ],
+  "author": "halaveika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/halaveika/my_ciphering_cli/issues"
+  },
+  "homepage": "https://github.com/halaveika/my_ciphering_cli#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
